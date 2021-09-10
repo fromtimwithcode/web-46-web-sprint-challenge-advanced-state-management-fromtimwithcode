@@ -13,25 +13,33 @@ export const ADD_ERROR = "ADD_ERROR";
 
 export const fetchSmurfs = () => {
     return (dispatch) => {
-        dispatch(fetchStart());
-        axios.get("http://localhost.3333/smurfs")
-            .then(res => {
-                dispatch(fetchSuccess(res.data));
-            })
-            .catch(err => {
-                dispatch(fetchFail(err));
-            });
+      dispatch(fetchStart());
+      axios.get("http://localhost:3333/smurfs")
+        .then(res => {
+          dispatch(fetchSuccess(res.data));
+        })
+        .catch(err => {
+          dispatch(fetchFail(err));
+        });
     };
-};
+  };
 
 export const fetchStart = () => {
-    return { type: FETCH_START };
+  return { type: FETCH_START };
 };
-  
+
 export const fetchSuccess = (data) => {
-    return { type: FETCH_SUCCESS, payload: data };
+  return { type: FETCH_SUCCESS, payload: data };
 };
-  
+
 export const fetchFail = (error) => {
-    return { type: FETCH_FAIL, payload: error };
+  return { type: FETCH_FAIL, payload: error };
+};
+
+export const addSmurf = (data) => {
+  return { type: ADD_SMURF, payload: data };
+};
+
+export const addError = (data) => {
+  return { type: ADD_ERROR, payload: data };
 };
